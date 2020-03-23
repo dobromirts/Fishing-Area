@@ -1,0 +1,53 @@
+<form class="text-center border border-light p-5" #registerForm="ngForm" (ngSubmit)="register()">
+
+    <p class="h4 mb-4">Registration</p>
+    
+    
+    <input id="username" type="text" [(ngModel)]="registerModel.username" name="username"  class="form-control mb-4" placeholder="Enter username">
+    <!-- <div *ngIf="signupForm.get('email').hasError('required')">Please provide a email.</div>
+    <div *ngIf="signupForm.get('email').hasError('required')">Please provide a valid email.</div> -->
+
+    <input id="email" type="email" [(ngModel)]="registerModel.email" name="email"  class="form-control mb-4" placeholder="Enter email">
+    
+
+    <input id="password" type="password" [(ngModel)]="registerModel.password" name="password"  class="form-control mb-4" placeholder="Enter password">
+    <!-- <div *ngIf="signupForm.get('password').hasError('required')">Please provide a password.</div>
+    <div *ngIf="signupForm.get('password').hasError('minlength')">Password must be at least 6 characters long.</div> -->
+
+    <input id="confirmPassword" type="password" [(ngModel)]="registerModel.confirmPassword" name="confirmPassword"  class="form-control mb-4" placeholder="Enter password">
+    <!-- <div *ngIf="signupForm.get('password').hasError('required')">Please provide a password.</div>
+    <div *ngIf="signupForm.get('password').hasError('minlength')">Password must be at least 6 characters long.</div> -->
+
+    <!-- <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm password">
+    <div *ngIf="noMatch()"> Password and repeat password don't match.</div> -->
+    
+
+    <div class="d-flex justify-content-around">
+        <div>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+            </div>
+        </div>
+        <div>
+            <a routerLink="/">Forgot password?</a>
+        </div>
+    </div>
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit">Register</button>
+
+    <!-- Register -->
+    <p>Not a member?
+        <a routerLink="/register">Register</a>
+    </p>
+
+    <!-- Social login -->
+    <p>or sign in with:</p>
+
+    <!-- <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a> -->
+
+</form>
