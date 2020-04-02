@@ -4,6 +4,8 @@ import javax.validation.constraints.NotBlank;
 
 public class UserRegisterServiceModel {
 
+    //TODO DELETE THIS MODEL
+
     @NotBlank
     private String username;
     private String email;

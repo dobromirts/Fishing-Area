@@ -7,12 +7,10 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
-// import { LoginComponent } from './login/login.component';
-// import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-import { AuthService } from './auth/auth.service';
+import {RegionsModule  } from './regions/regions.module';
 
 import {HttpClientModule} from '@angular/common/http';
 import { MapComponent } from './map/map.component' //can be deleted from here after test
@@ -39,7 +37,8 @@ import { MapComponent } from './map/map.component' //can be deleted from here af
     ReactiveFormsModule,
     HttpClientModule,
     AuthModule,
-    UserModule
+    UserModule,
+    RegionsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

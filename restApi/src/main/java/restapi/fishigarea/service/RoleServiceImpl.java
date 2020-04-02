@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import restapi.fishigarea.domain.entities.Role;
-import restapi.fishigarea.domain.models.RoleServiceModel;
+import restapi.fishigarea.domain.models.service.RoleServiceModel;
 import restapi.fishigarea.repository.RoleRepository;
 
 import java.util.Set;

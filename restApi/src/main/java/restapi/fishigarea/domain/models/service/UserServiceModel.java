@@ -1,6 +1,6 @@
-package restapi.fishigarea.domain.models.service.user;
+package restapi.fishigarea.domain.models.service;
 
-import restapi.fishigarea.domain.models.RoleServiceModel;
+import restapi.fishigarea.domain.models.service.RoleServiceModel;
 
 import java.util.Set;
 

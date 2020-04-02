@@ -3,7 +3,7 @@ package restapi.fishigarea.service;
 
 import javassist.NotFoundException;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import restapi.fishigarea.domain.models.service.user.UserServiceModel;
+import restapi.fishigarea.domain.models.service.UserServiceModel;
 
 import java.util.List;
 
@@ -16,8 +16,9 @@ public interface UserService extends UserDetailsService {
 
     List<UserServiceModel> findAllUsers();
 
-    void editAuthority(String id);
+    UserServiceModel editAuthority(String id); //promote demote user
 
     UserServiceModel editUser(UserServiceModel userServiceModel, String oldPassword);
 
+    boolean userWithGivenUsernameExists(String username);
 }

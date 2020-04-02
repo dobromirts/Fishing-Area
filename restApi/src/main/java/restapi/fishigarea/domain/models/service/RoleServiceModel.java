@@ -1,4 +1,4 @@
-package restapi.fishigarea.domain.models;
+package restapi.fishigarea.domain.models.service;
 
 public class RoleServiceModel {
     private String id;

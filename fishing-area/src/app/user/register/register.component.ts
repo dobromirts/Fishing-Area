@@ -4,10 +4,11 @@ import { RegisterModel } from './registerModel';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss','../../../error-styles.scss']
 })
 export class RegisterComponent implements OnInit {
   registerModel: RegisterModel;

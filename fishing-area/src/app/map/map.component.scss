@@ -3,7 +3,12 @@
 }
 
 .mapdiv path{
+    cursor:pointer;
     margin: auto;
     fill: darkseagreen;
     stroke: darkcyan;
 }
+
+.mapdiv path:hover {
+    fill: rgba(192, 31, 84, 0.842);
+  }

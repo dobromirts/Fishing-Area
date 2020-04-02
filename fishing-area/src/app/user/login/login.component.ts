@@ -6,7 +6,7 @@ import { SignInModel } from './singInModel';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss','../../../error-styles.scss']
 })
 export class LoginComponent implements OnInit{
  
@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit{
     this.authService.signIn(this.signInModel).subscribe(data => {
       this.authService.handleAuthentication(data.headers.get('Authorization'), this.rememberMe);
       this.router.navigate(['/']);
-      console.log('done')
     },console.error);
   }
 

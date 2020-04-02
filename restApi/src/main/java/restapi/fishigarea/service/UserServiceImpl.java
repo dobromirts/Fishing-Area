@@ -9,8 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import restapi.fishigarea.constants.AuthorityConstants;
 import restapi.fishigarea.domain.entities.User;
-import restapi.fishigarea.domain.models.RoleServiceModel;
-import restapi.fishigarea.domain.models.service.user.UserServiceModel;
+import restapi.fishigarea.domain.models.service.RoleServiceModel;
+import restapi.fishigarea.domain.models.service.UserServiceModel;
 import restapi.fishigarea.repository.UserRepository;
 
 import java.util.LinkedHashSet;
@@ -97,6 +97,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean userWithGivenUsernameExists(String username) {
+        return userRepository.findByUsername(username).isPresent();
+    }
+
+    @Override
     public List<UserServiceModel> findAllUsers() {
         return this.userRepository.findAll()
                 .stream()
@@ -110,7 +115,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void editAuthority(String id) {
+    public UserServiceModel editAuthority(String id) {
         User user = this.userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException(NO_SUCH_USERNAME_MESSAGE));
         UserServiceModel userServiceModel = this.modelMapper.map(user, UserServiceModel.class);
 
@@ -129,7 +134,8 @@ public class UserServiceImpl implements UserService {
             userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_ADMIN"));
         }
 
-        this.userRepository.saveAndFlush(this.modelMapper.map(userServiceModel, User.class));
+        User editedUser=this.userRepository.saveAndFlush(this.modelMapper.map(userServiceModel, User.class));
+        return this.modelMapper.map(editedUser,UserServiceModel.class);
     }
 
 

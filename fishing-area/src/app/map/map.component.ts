@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+  }
+
+  clickHanlder(event :any){
+    if(event.target.id){
+      console.log(event.target.id)
+      this.router.navigate([`/regions/details/${event.target.id}`])
+    }
+    
   }
 
 }

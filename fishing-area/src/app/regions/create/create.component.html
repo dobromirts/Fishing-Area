@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        <form #regionForm="ngForm" class="text-center border border-light p-5" (ngSubmit)="addRegion()">
+
+            <p class="h4 mb-4">Add region</p>
+
+            <input #regionInput='ngModel' id="region" type="text" [(ngModel)]="regionModel.name"
+                name="region" placeholder="Enter region" class="form-control mb-4" required>
+
+
+
+            <button class="btn btn-info btn-block my-4" type="submit">Save</button>
+        </form>
+    </div>
+        <div class="col-md-6">
+            <app-list></app-list>
+        </div>
+    </div>
+</div>

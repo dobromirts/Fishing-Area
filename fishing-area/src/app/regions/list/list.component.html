@@ -1,0 +1,30 @@
+<h4 class="text-center">Current regions</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Region</th>
+            <th scope="col">Details</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let region of regions; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+                {{ region.name }}
+            </td>
+            <td>
+                <a class="btn btn-info" [routerLink]="['/regions/details', region.name]">Details</a>
+            </td>
+            <td>
+                <a class="btn btn-info" [routerLink]="['/regions/delete', region.name]">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
