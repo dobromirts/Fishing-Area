@@ -31,13 +31,14 @@ public class FishpondServiceImpl implements FishpondService {
     @Override
     public FishpondServiceModel addFishpond(String regionName,FishpondServiceModel fishpondServiceModel, MultipartFile file) {
         Fishpond fishpond=this.modelMapper.map(fishpondServiceModel,Fishpond.class);
-        fishpond.setRegion(this.modelMapper.map(this.regionService.getRegionByName(regionName), Region.class));
+        Region region=this.modelMapper.map(this.regionService.getRegionByName(regionName), Region.class);
+        fishpond.setRegion(region);
         try {
             fishpond.setImageUrl(this.cloudinaryService.uploadImg(file));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return this.modelMapper.map(this.fishpondRepository.save(fishpond),FishpondServiceModel.class);
+        return this.modelMapper.map(this.fishpondRepository.saveAndFlush(fishpond),FishpondServiceModel.class);
     }
 
     @Override

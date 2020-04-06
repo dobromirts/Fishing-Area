@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { RegionsService } from '../regions.service';
-import { RegionModel } from '../create/regionModel';
+import { RegionModel } from '../region-binding.model';
 import { pipe } from 'rxjs';
 
 

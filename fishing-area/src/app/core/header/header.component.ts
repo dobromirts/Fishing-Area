@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
-import { UserService } from 'src/app/user/user.service';
+import { AuthService } from 'src/app/user/auth.service';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-header',
@@ -14,7 +13,6 @@ export class HeaderComponent implements OnInit{
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -26,7 +24,6 @@ export class HeaderComponent implements OnInit{
 
   onLogout() {
     this.authService.logout();
-    this.userService.loggedUser.next(null);
 }
 
   

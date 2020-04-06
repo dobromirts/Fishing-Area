@@ -5,6 +5,8 @@ import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MapComponent } from './map/map.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { ContactsComponent } from './core/contacts/contacts.component';
 
 
 const routes: Routes = [
@@ -23,13 +25,22 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
+    path: 'profile',
+    component: UserProfileComponent
+  },
+  {
     path: 'map',
     component: MapComponent
+  },
+  {
+    path: 'contacts',
+    component: ContactsComponent,
   },
   {
     path: '**',
     component: NotFoundComponent
   }
+  
 ];
 
 export const AppRoutingModule = RouterModule.forRoot(routes);

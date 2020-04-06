@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegionModel } from '../create/regionModel';
+import { RegionModel } from '../region-binding.model';
 import { RegionsService } from '../regions.service';
 import { Router } from '@angular/router';
 

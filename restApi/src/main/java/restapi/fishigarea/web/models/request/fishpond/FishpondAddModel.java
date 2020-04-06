@@ -1,10 +1,12 @@
 package restapi.fishigarea.web.models.request.fishpond;
 
-public class FishpondAddRequestModel {
+public class FishpondAddModel {
     private String name;
     private String description;
+    private String regionName;
 
-    public FishpondAddRequestModel() {
+
+    public FishpondAddModel() {
     }
 
     public String getName() {
@@ -21,5 +23,12 @@ public class FishpondAddRequestModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public String getRegionName() {
+        return regionName;
+    }
+
+    public void setRegionName(String regionName) {
+        this.regionName = regionName;
     }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RegionModel } from './create/regionModel';
+import { RegionModel } from './region-binding.model';
 import { tap } from 'rxjs/operators';
 
 @Injectable({

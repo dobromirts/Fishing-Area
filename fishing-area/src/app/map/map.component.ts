@@ -15,7 +15,7 @@ export class MapComponent implements OnInit {
 
   clickHanlder(event :any){
     if(event.target.id){
-      console.log(event.target.id)
+
       this.router.navigate([`/regions/details/${event.target.id}`])
     }
     

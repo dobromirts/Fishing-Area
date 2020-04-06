@@ -8,9 +8,9 @@ import { CoreModule } from './core/core.module'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import {RegionsModule  } from './regions/regions.module';
+import {FishpondModule} from './fishpond/fishpond.module'
 
 import {HttpClientModule} from '@angular/common/http';
 import { MapComponent } from './map/map.component' //can be deleted from here after test
@@ -36,9 +36,9 @@ import { MapComponent } from './map/map.component' //can be deleted from here af
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AuthModule,
     UserModule,
-    RegionsModule
+    RegionsModule,
+    FishpondModule
   ],
   providers: [],
   bootstrap: [AppComponent]

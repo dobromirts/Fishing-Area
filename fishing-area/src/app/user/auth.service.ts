@@ -3,19 +3,11 @@ import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { IUser } from '../shared/interfaces/user';
-import { UserAuthModel } from './userAuthModel';
-import {SignInModel} from '../user/login/singInModel'
-import { RegisterModel } from '../user/register/registerModel';
+import { UserAuthModel } from './user-auth.model';
+import {SignInModel} from './login/signIn-binding.model'
+import { RegisterModel } from './register/register-binding.model';
 
-export interface AuthResponseData {
-  kind: string;
-  idToken: string;
-  email: string;
-  refreshToken: string;
-  expiresIn: string;
-  localId: string;
-  registered?: boolean;
-}
+
 
 
 @Injectable({
@@ -26,6 +18,8 @@ export class AuthService {
   private basicUrl = 'http://localhost:8080'
 
   user = new BehaviorSubject<UserAuthModel>(null);
+  userId: string;
+  loggedUser: IUser
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -46,9 +40,10 @@ export class AuthService {
 
   logout() {
     this.user.next(null);
+    this.userId=null;
+    this.loggedUser=null
     this.router.navigate(['/']);
     localStorage.removeItem('userData');
-    // localStorage.removeItem('fp');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
@@ -82,10 +77,34 @@ export class AuthService {
     const user = new UserAuthModel(userId, userRole, rememberMe, token, expirationDate);
     this.user.next(user);
     this.autoLogout(tokenExpiresInMS);
+    
 
     const localStorageUser = { ...user };
+    this.userId=localStorageUser.userId
     delete localStorageUser.role;
-
     localStorage.setItem('userData', JSON.stringify(localStorageUser));
+  }
+
+
+
+  loadLoggedUser() {
+    if (this.userId) {
+      this.getUserById(this.userId).subscribe(data => {
+        this.loggedUser= data;
+      });
+      
+    }
+  }
+
+  getUserById(id: string): Observable<IUser> {
+    return this.http.get<IUser>(`${this.basicUrl}/api/users/id/` + id);
+  }
+
+  getUserByUsername(username: string): Observable<IUser> {
+    return this.http.get<IUser>(`${this.basicUrl}/api/users/username/` + username);
+  }
+
+  checkIfUserExistsByUsername(username: string) {
+    return this.http.get(`${this.basicUrl}/api/users/exists/` + username);
   }
 }
