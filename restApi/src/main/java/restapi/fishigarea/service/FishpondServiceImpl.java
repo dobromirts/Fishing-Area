@@ -47,6 +47,12 @@ public class FishpondServiceImpl implements FishpondService {
     }
 
     @Override
+    public List<FishpondServiceModel> getAllFishpondsByRegion(String name) {
+        Region region=this.modelMapper.map(this.regionService.getRegionByName(name),Region.class);
+        return this.fishpondRepository.findAllByRegion(region).stream().map(f->this.modelMapper.map(f,FishpondServiceModel.class)).collect(Collectors.toList());
+    }
+
+    @Override
     public FishpondServiceModel getFishpondByName(String name) {
         return this.modelMapper.map(this.fishpondRepository.findFishpondByName(name),FishpondServiceModel.class);
     }

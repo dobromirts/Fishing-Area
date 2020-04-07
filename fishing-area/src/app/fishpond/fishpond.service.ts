@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { FishpondAddModel } from './create/fishpond-add.model';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+import { FishpondAllModel } from './list/fishpond-all.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FishpondService {
   private baseUrl="http://localhost:8080/api";
-  fishponds: FishpondAddModel[]
+  fishponds: FishpondAllModel[]
 
   constructor(private http:HttpClient) { }
 
@@ -17,14 +18,6 @@ export class FishpondService {
   // }
   addFishopond(formData: FormData){
     return this.http.post(`${this.baseUrl}/fishpond/add`,formData)
-  }
-
-  allFishoponds(){
-    return this.http.get<FishpondAddModel[]>(`${this.baseUrl}/fishopond/all`).pipe(
-      tap((fishponds)=>{
-        this.fishponds=[].concat(fishponds);
-      })
-    )
   }
 
   findFishpondByName(name: string){

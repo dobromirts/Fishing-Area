@@ -1,6 +1,7 @@
 import { RouterModule,Routes } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import {ListComponent} from './list/list.component'
+import { DetailsComponent } from './details/details.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'all',
         component: ListComponent
+      },
+      {
+        path: 'details/:id',
+        component: DetailsComponent
       },
     ]
   }

@@ -50,7 +50,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/fishpond/add","/api/regions/*","/api/users/register",
+                .antMatchers("/api/fishpond/all/*","/api/fishpond/*","/api/regions/*","/api/users/register",
                         "/api/users/signin", "/api/users/exists/*","/api/users/id/*").permitAll()
                 .antMatchers("/",
                         "/favicon.ico",

@@ -8,6 +8,7 @@ import restapi.fishigarea.domain.models.service.RegionServiceModel;
 import restapi.fishigarea.service.RegionService;
 import restapi.fishigarea.web.models.request.region.RegionModel;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,8 @@ public class RegionController {
     public RegionModel getRegionByName(@PathVariable("name") String name){
         return this.modelMapper.map(this.regionService.getRegionByName(name),RegionModel.class);
     }
+
+
 
     @DeleteMapping("/delete/{name}")
     public boolean deleteRegion(@PathVariable("name") String name){

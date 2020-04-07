@@ -10,6 +10,8 @@ public interface FishpondService {
 
     List<FishpondServiceModel> getAllFishponds();
 
+    List<FishpondServiceModel> getAllFishpondsByRegion(String name);
+
     FishpondServiceModel getFishpondByName(String name);
 
     boolean delete (String name);
