@@ -12,7 +12,7 @@ public interface FishpondService {
 
     List<FishpondServiceModel> getAllFishpondsByRegion(String name);
 
-    FishpondServiceModel getFishpondByName(String name);
+    FishpondServiceModel getFishpondById(String id);
 
-    boolean delete (String name);
+    boolean delete (String id);
 }

@@ -19,7 +19,7 @@
           <a class="nav-link " *ngIf="!isUserLoggedIn" routerLink="/regions">Regions</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " *ngIf="!isUserLoggedIn" routerLink="/fishpond">Fishpond</a>
+          <a class="nav-link " *ngIf="!isUserLoggedIn" routerLink="/fish">Fish</a>
         </li>
         <li class="nav-item">
           <a class="nav-link " *ngIf="!isUserLoggedIn" routerLink="/login">Login</a>
@@ -48,7 +48,7 @@
           Admin panel
         </a>
         <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
-          <a ngbDropdownItem routerLink="/regions/create" (click)="$event.preventDefault()">All users</a>
+          <a ngbDropdownItem routerLink="/users/all" (click)="$event.preventDefault()">All users</a>
           <a ngbDropdownItem routerLink="/regions/create" (click)="$event.preventDefault()">Add region</a>
           <a ngbDropdownItem routerLink="/regions/all" (click)="$event.preventDefault()">All regions</a>
           <a ngbDropdownItem routerLink="/fishpond/create" (click)="$event.preventDefault()">Add fishpond</a>

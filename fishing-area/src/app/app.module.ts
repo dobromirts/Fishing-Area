@@ -12,10 +12,11 @@ import { UserModule } from './user/user.module';
 import {RegionsModule  } from './regions/regions.module';
 import {FishpondModule} from './fishpond/fishpond.module'
 
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { MapComponent } from './map/map.component' //can be deleted from here after test
-
-
+import { FishModule } from './fish/fish.module';
+import { SharedModule } from './shared/shared.module';
+import { AuthInterceptor } from './auth-interceptor';
 
 
 
@@ -26,6 +27,7 @@ import { MapComponent } from './map/map.component' //can be deleted from here af
     HomeComponent,
     NotFoundComponent,
     MapComponent,
+    
 
   ],
   imports: [
@@ -33,14 +35,18 @@ import { MapComponent } from './map/map.component' //can be deleted from here af
     AppRoutingModule,
     NgbModule,
     CoreModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     UserModule,
     RegionsModule,
-    FishpondModule
+    FishpondModule,
+    FishModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

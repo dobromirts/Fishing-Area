@@ -10,12 +10,16 @@
           placeholder="Enter region" class="form-control mb-4" required> -->
         <input #inputName="ngModel" [(ngModel)]="fishpondAddModel.name" id="name" type="text" name="name"
           placeholder="Enter name" class="form-control mb-4" required>
-        <input #inputDescription="ngModel"  id="description" [(ngModel)]="fishpondAddModel.description" type="text"
-          name="description" placeholder="Enter description" class="form-control mb-4" required>
+        <textarea class="form-control" rows="5" #inputDescription="ngModel" id="description"
+          [(ngModel)]="fishpondAddModel.description" name="description" placeholder="Enter description" required>
+        </textarea>
+        <!-- <input #inputDescription="ngModel"  id="description" [(ngModel)]="fishpondAddModel.description" type="text"
+          name="description" placeholder="Enter description" class="form-control mb-4" required> -->
 
         <div class="form-group">
           <label for="sel1">Select region:</label>
-          <select class="form-control" id="sel1" #inputOption="ngModel" name="region" [(ngModel)]="fishpondAddModel.regionName">
+          <select class="form-control" id="sel1" #inputOption="ngModel" name="region"
+            [(ngModel)]="fishpondAddModel.regionName">
             <option *ngFor="let region of regions">{{region.name}}</option>
           </select>
         </div>
@@ -24,7 +28,8 @@
           <label for="customFile" id="exercisePictureLabel">Picture</label>
           <div class="custom-file" id="customFileContainer">
             <input type="file" class="custom-file-input form-control" id="customFile" name="exercisePictureFile"
-              #inputPicture="ngModel"  [(ngModel)]="file" accept="*" (change)="handleFileInput($event.target.files, chooseFileLabel)">
+              #inputPicture="ngModel" [(ngModel)]="file" accept="*"
+              (change)="handleFileInput($event.target.files, chooseFileLabel)">
             <label class="custom-file-label" for="customFile" id="çhooseFileLabel" #chooseFileLabel>Choose
               file</label>
           </div>

@@ -3,10 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
+import {ListComponent} from './user/list/list.component'
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MapComponent } from './map/map.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { ContactsComponent } from './core/contacts/contacts.component';
+import { AdminGuard } from './user/admin.guard';
+import { LoggedGuard } from './user/logged.guard';
+import { AuthGuard } from './user/auth.guard';
 
 
 const routes: Routes = [
@@ -18,15 +22,23 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoggedGuard]
 
   },
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [LoggedGuard]
+  },
+  {
+    path: 'users/all',
+    component: ListComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: 'profile',
-    component: UserProfileComponent
+    component: UserProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'map',

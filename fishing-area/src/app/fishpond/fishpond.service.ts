@@ -13,14 +13,24 @@ export class FishpondService {
 
   constructor(private http:HttpClient) { }
 
-  // addFishopond(fishpondAddModel: FishpondAddModel){
-  //   return this.http.post(`${this.baseUrl}/fishopond/add`,fishpondAddModel)
-  // }
+
   addFishopond(formData: FormData){
     return this.http.post(`${this.baseUrl}/fishpond/add`,formData)
   }
 
-  findFishpondByName(name: string){
-    return this.http.get(`${this.baseUrl}/fishpond/${name}`)
+  findFishpondById(id: string){
+    return this.http.get(`${this.baseUrl}/fishpond/${id}`)
+  }
+
+  deleteFishPond(id: string){
+    return this.http.delete(`${this.baseUrl}/fishpond/delete/${id}`)
+  }
+
+  allFishponds(){
+    return this.http.get(`${this.baseUrl}/fishpond/all`).pipe(
+      tap((fishpond:FishpondAddModel)=>{
+        this.fishponds=[].concat(fishpond)
+      })
+    )
   }
 }

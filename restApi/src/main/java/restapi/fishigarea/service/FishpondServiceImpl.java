@@ -53,14 +53,16 @@ public class FishpondServiceImpl implements FishpondService {
     }
 
     @Override
-    public FishpondServiceModel getFishpondByName(String name) {
-        return this.modelMapper.map(this.fishpondRepository.findFishpondByName(name),FishpondServiceModel.class);
+    public FishpondServiceModel getFishpondById(String id) {
+        Fishpond fishpond=this.fishpondRepository.findById(id).orElseThrow();
+
+        return this.modelMapper.map(fishpond,FishpondServiceModel.class);
     }
 
     @Override
-    public boolean delete(String name) {
+    public boolean delete(String id) {
         try {
-            Fishpond fishpond=this.fishpondRepository.findFishpondByName(name);
+            Fishpond fishpond=this.fishpondRepository.findById(id).orElseThrow();
             this.fishpondRepository.delete(fishpond);
             return true;
         }catch (Exception e){

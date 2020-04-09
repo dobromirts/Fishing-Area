@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form #regionForm="ngForm" class="text-center" (ngSubmit)="editFishpond()">
+
+                <p class="h4 mb-4">Edit fishpond</p>
+                <label for="name">Name</label>
+                <input #nameInput='ngModel' id="name" type="text" [(ngModel)]="fishpond.name" name="name"
+                    placeholder="fishpond.name" class="form-control mb-4" required>
+                <label for="description">Description</label>
+                <input #nameInput='ngModel' id="description" type="text" [(ngModel)]="fishpond.description"
+                    name="description" placeholder="fishpond.description" class="form-control mb-4" required>
+                <img class="card-img-top" src="{{fishpond.imageUrl}}" alt="Card image cap">
+
+
+
+                <button class="btn btn-info btn-block my-4" type="submit">Edit</button>
+
+            </form>
+            <form class="text-center" (ngSubmit)="delete()">
+            <button class=" btn btn-danger btn-block my-4" type="submit">Delete</button>
+            </form>
+        </div>

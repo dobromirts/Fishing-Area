@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="row">
+        <!-- <div class="col-md-8 mb30">
+            <div class="card">
+                <div>
+                    
+                    <ul class="nav tabs-admin" role="tablist">
+                        <li role="presentation" class="nav-item"><a class="nav-link active" href="#t1"
+                                aria-controls="t1" role="tab" data-toggle="tab">{{fish.name}}</a></li>
+                    </ul>
+                    
+                    <div class="tab-content admin-tab-content pt30">
+                        <div role="tabpanel" class="tab-pane active show" id="t1">
+                            <ul class="activity-list list-unstyled">
+                                <li class="clearfix">
+                                    <div class="act-content">
+                                        <div class="font400">
+                                            <img [src]="fish.imageUrl" alt=""
+                                            class="img-fluid img-thumbnail">
+                                    
+                                        </div>
+                                        
+                                        <p>
+                                            {{fish.name}}
+                                        </p>
+                                        
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <div class="act-content">
+                                        <div class="font400">
+            
+                                            <a href="#" class="font600">Robin jackson</a> Started Following You
+                                        </div>
+                                        <span class="text-small">11 Min Ago, On <a href="#">Twitter</a></span>
+                                        <p class="mb0">
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+                                            nibh euismod tincidunt ut.
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="t4">
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+        </div> -->
+
+        <div class="col-md-8 mb30">
+            <h3 class="font-weight-light text-center card">{{fish.name}}</h3>
+            <div class="text-center">
+                <img [src]="fish.imageUrl" alt=""
+                class="img-thumbnail" width="500px" height="400px">
+        
+            </div>
+            <p class="font-weight-light  card">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+            <p class="font-weight-light  card">{{fish.description}}</p>
+            <p class="font-weight-light  card">{{fish.bate}}</p>
+            <p class="font-weight-light  card">{{fish.gear}}</p>
+
+        </div>
+        
+
+
+
+        <div class="col-md-4 mb30">
+            
+            <h5 class="font-weight-light text-center card">Also can be found in these fishponds</h5>
+            <div class="card" *ngFor="let fishpond of fish.fishponds">
+                <div class="card-content pt20 pb20 profile-header">
+                    <img [src]="fishpond.imageUrl" alt=""
+                        class="img-fluid rounded-circle">
+                    <h4 class="card-title text-center mb20">{{fishpond.name}}</h4>
+                    <p>
+                        {{fishpond.description | slice:0:100 }}...
+                        <!-- {{fishpond.description | limitTo: 20 }}{{fishpond.description > 20 ? '...' : ''}} -->
+                    </p>
+                    <hr>
+                    <div class="text-center">
+                        <a [routerLink]="['/fishpond/details', fishpond.id]" class="btn btn-info btn-rounded">More info</a>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

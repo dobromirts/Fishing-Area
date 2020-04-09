@@ -50,7 +50,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/fishpond/all/*","/api/fishpond/*","/api/regions/*","/api/users/register",
+                .antMatchers("/api/fish/*","/api/fish/all/*","/api/fish/add","/api/fishpond/delete/*","/api/fishpond/all/*","/api/fishpond/*","/api/regions/*","/api/users/register",
                         "/api/users/signin", "/api/users/exists/*","/api/users/id/*").permitAll()
                 .antMatchers("/",
                         "/favicon.ico",
@@ -62,7 +62,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/api/exercises/create","/api/users/all").hasAuthority(AuthorityConstants.AUTHORITY_ADMIN)
+                .antMatchers("/api/exercises/create","/api/users/all").hasAuthority(AuthorityConstants.AUTHORITY_ROOT)
                 .antMatchers( "/api/users/promote", "/api/users/demote").hasAuthority(AuthorityConstants.AUTHORITY_ADMIN)
                 .anyRequest().authenticated()
                 .and()

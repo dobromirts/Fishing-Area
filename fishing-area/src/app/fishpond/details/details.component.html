@@ -1,177 +1,26 @@
-<!-- <p>{{region?.name}}</p> -->
-
 
 <div class="album py-5 bg-light">
 
     <div class="container">
-        <h1 class="font-weight-light text-center">Fishes</h1>
-        <!-- <h3 class="font-weight-light text-center">{{region?.name}}</h3>
-        <h3 *ngIf="!fishponds" class="font-weight-light text-center">No fishponds for this region</h3>
-        <div class="row">
-            <div class="col-md-4" *ngFor="let fishpond of fishponds">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{{fishpond.imageUrl}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="font-weight-light text-center">{{fishpond.name}}</h5>
-                        <p class="font-weight-light">{{fishpond.description}}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-
-                            <a class="btn  btn-info" [routerLink]="['/fishpond/details', fishpond.id]">View</a>
-                            <a class="btn btn-info" [routerLink]="['/fishpond/edit', fishpond.id]">Edit</a>
-                            <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-
-                        <!-- </div>
-                    </div>
+      <h1 class="font-weight-light text-center">Fishing Ponds</h1>
+      <h3 class="font-weight-light text-center">{{region?.name}}</h3>
+      <h3 *ngIf="!fishes" class="font-weight-light text-center">No fishes for this fishpond</h3>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let fish of fishes">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" src="{{fish.imageUrl}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="font-weight-light text-center">{{fish.name}}</h5>
+              <p class="font-weight-light">{{fish.description}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/fish/details', fish.id]">View</a>
+                <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/fish/edit', fish.id]">Edit</a>
                 </div>
-            </div> --> -->
-            <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRbpoteKfg6lMe5xshVQAyPrwWbatgqz_lQIXEDiJAndaISRuZ0&usqp=CAU"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcROxuZpOKhk3zqVwaqvzYevq6UoBw8x9RaTYEbvukXBy4Pt9IvT&usqp=CAU"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzXii16EZriN8LUyuQBmp-ECxBoe4_KO6goCkvE-1rRpVhSW7z&usqp=CAU"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzXii16EZriN8LUyuQBmp-ECxBoe4_KO6goCkvE-1rRpVhSW7z&usqp=CAU"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzXii16EZriN8LUyuQBmp-ECxBoe4_KO6goCkvE-1rRpVhSW7z&usqp=CAU"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzXii16EZriN8LUyuQBmp-ECxBoe4_KO6goCkvE-1rRpVhSW7z&usqp=CAU"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzXii16EZriN8LUyuQBmp-ECxBoe4_KO6goCkvE-1rRpVhSW7z&usqp=CAU"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzXii16EZriN8LUyuQBmp-ECxBoe4_KO6goCkvE-1rRpVhSW7z&usqp=CAU"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>

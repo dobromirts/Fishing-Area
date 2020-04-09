@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     private UserService userService;
@@ -26,6 +27,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String header = request.getHeader(AuthConstants.AUTHORIZATION_HEADER);
+
 
         if(header == null || !header.startsWith(AuthConstants.AUTHORIZATION_HEADER_BEGINNING)) {
             chain.doFilter(request, response);

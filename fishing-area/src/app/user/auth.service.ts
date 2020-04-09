@@ -6,6 +6,7 @@ import { IUser } from '../shared/interfaces/user';
 import { UserAuthModel } from './user-auth.model';
 import {SignInModel} from './login/signIn-binding.model'
 import { RegisterModel } from './register/register-binding.model';
+import { tap } from 'rxjs/operators';
 
 
 
@@ -21,6 +22,7 @@ export class AuthService {
   userId: string;
   loggedUser: IUser
   private tokenExpirationTimer: any;
+  allUsers:IUser[];
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -70,6 +72,7 @@ export class AuthService {
     const userId = payload.userId;
     const userRole = payload.role;
     const tokenExpiresInMS = payload.exp;
+    
 
     const expirationDate = new Date(new Date().getTime() + 863940000);
 
@@ -107,4 +110,14 @@ export class AuthService {
   checkIfUserExistsByUsername(username: string) {
     return this.http.get(`${this.basicUrl}/api/users/exists/` + username);
   }
+
+  getAllUsers(){
+    return this.http.get<IUser[]>(`${this.basicUrl}/api/users/all`).pipe(
+      tap((users:IUser[])=>{
+        this.allUsers=[].concat(users)
+        
+      })
+    )
+  }
+  
 }

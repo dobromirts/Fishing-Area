@@ -1,22 +1,29 @@
-package restapi.fishigarea.domain.entities;
+package restapi.fishigarea.web.models.response.fish;
 
-import javax.persistence.*;
+import restapi.fishigarea.web.models.response.fishpond.FishpondResponseModel;
+
 import java.util.List;
 
-@Entity
-@Table(name = "fishes")
-public class Fish extends BaseEntity{
+public class FishResponseModel {
+    private String id;
     private String name;
     private String description;
     private String bate;
     private String gear;
     private String imageUrl;
-    private List<Fishpond> fishponds;
+    private List<FishpondResponseModel> fishponds;
 
-    public Fish() {
+    public FishResponseModel() {
     }
 
-    @Column(name = "name",nullable = false)
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -24,7 +31,7 @@ public class Fish extends BaseEntity{
     public void setName(String name) {
         this.name = name;
     }
-    @Column(name = "description",nullable = false)
+
     public String getDescription() {
         return description;
     }
@@ -32,7 +39,7 @@ public class Fish extends BaseEntity{
     public void setDescription(String description) {
         this.description = description;
     }
-    @Column(name = "bate",nullable = false)
+
     public String getBate() {
         return bate;
     }
@@ -40,7 +47,7 @@ public class Fish extends BaseEntity{
     public void setBate(String bate) {
         this.bate = bate;
     }
-    @Column(name = "gear",nullable = false)
+
     public String getGear() {
         return gear;
     }
@@ -48,7 +55,7 @@ public class Fish extends BaseEntity{
     public void setGear(String gear) {
         this.gear = gear;
     }
-    @Column(name = "image_url",nullable = false)
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -56,14 +63,12 @@ public class Fish extends BaseEntity{
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    @ManyToMany(targetEntity = Fishpond.class)
-    @JoinTable(name = "fishes_fishponds", joinColumns = @JoinColumn(name = "fish_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "fishpond_id", referencedColumnName = "id"))
-    public List<Fishpond> getFishponds() {
+
+    public List<FishpondResponseModel> getFishponds() {
         return fishponds;
     }
 
-    public void setFishponds(List<Fishpond> fishponds) {
+    public void setFishponds(List<FishpondResponseModel> fishponds) {
         this.fishponds = fishponds;
     }
 }
