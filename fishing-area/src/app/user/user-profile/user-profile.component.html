@@ -1,31 +1,15 @@
-<p>{{authSerice.loggedUser?.username}}</p>
 <div class="container">
 
     <div class="row">
+
         <div class="col-md-4 mb30">
             <div class="card">
-
-                <div class="card-content pt20 pb20 profile-header">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="img-fluid rounded-circle">
-                    <h4 class="card-title text-center mb20">Adam Voges</h4>
+                <div class="card-content pt20 pb20 profile-header" *ngIf="userProfile">
+                    <img [src]="userProfile.profilePictureURL" alt="" class="img-fluid rounded-circle">
+                    <h4 class="card-title text-center mb20">{{userProfile.name}}</h4>
                     <p>
-                        Hello, I am Adam Voges from London, I am a professional designer at design_mylife. I hope you enjoy the Assan Templates and how its updated every month
-
+                        {{userProfile.information}}
                     </p>
-                    <div class="text-center clearfix">
-                        <a href="#" class="social-icon-sm si-border si-facebook si-border-round">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                        <a href="#" class="social-icon-sm si-border si-twitter si-border-round">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon-sm si-border si-g-plus si-border-round">
-                            <i class="fa fa-google-plus"></i>
-                        </a>
-                        <a href="#" class="social-icon-sm si-border si-skype si-border-round">
-                            <i class="fa fa-skype"></i>
-                        </a>
-                    </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-4 mb20">
@@ -41,61 +25,47 @@
                             <h6 class="text-small text-muted">Posts</h6>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary btn-rounded">Follow</a>
+                    <a routerLink="/profile/edit" class="btn btn-primary btn-rounded">Edit profile</a>
                     <hr>
-                    <div class="skill-bar mb20 clearfix">
+                    <a routerLink="/profile/catch" class="btn btn-primary btn-rounded">Add new catch</a>
+                    <hr>
 
-                        <span>HTML5 / CSS3</span>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <!--skill bar-->
-                    <div class="skill-bar mb20 clearfix">
-
-                        <span>Javascript</span>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 89%"></div>
-                        </div>
-                    </div>
-                    <!--skill bar-->
-                    <div class="skill-bar mb20 clearfix">
-
-                        <span>Bootstrap</span>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <!--skill bar-->
-                    <div class="skill-bar clearfix">
-
-                        <span>Coffee</span>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <!--skill bar-->
                 </div>
-                <!--content-->
-
+                <div *ngIf="!userProfile">
+                    Create your profile!
+                    <br>
+                    <a routerLink="/profile/edit" class="btn btn-primary btn-rounded">Create profile</a>
+                    <hr>
+                </div>
             </div>
         </div>
+
+
         <div class="col-md-8 mb30">
             <div class="card">
-                <div>
 
-                    <!-- Nav tabs -->
+                <div *ngIf="!userProfile">
                     <ul class="nav tabs-admin" role="tablist">
-                        <li role="presentation" class="nav-item"><a class="nav-link active" href="#t1" aria-controls="t1" role="tab" data-toggle="tab">Activities</a></li>
+                        <li role="presentation" class="nav-item"><a class="nav-link active" href="#t1"
+                                aria-controls="t1" role="tab" data-toggle="tab">Activities</a></li>
                     </ul>
 
-                    <!-- Tab panes -->
+                </div>
+
+
+
+                <div *ngIf="userProfile">
+                    <ul class="nav tabs-admin" role="tablist">
+                        <li role="presentation" class="nav-item"><a class="nav-link active" href="#t1"
+                                aria-controls="t1" role="tab" data-toggle="tab">Activities</a></li>
+                    </ul>
                     <div class="tab-content admin-tab-content pt30">
                         <div role="tabpanel" class="tab-pane active show" id="t1">
-                            <ul class="activity-list list-unstyled">
+                            <ul class="activity-list list-unstyled" *ngFor="let catch of catches">
                                 <li class="clearfix">
                                     <div class="float-left">
-                                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="img-fluid rounded-circle"></a>
+                                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
+                                                class="img-fluid rounded-circle"></a>
                                     </div>
                                     <div class="act-content">
                                         <div class="font400">
@@ -104,14 +74,45 @@
                                         </div>
                                         <span class="text-small">11 Min Ago</span>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+                                            nibh euismod tincidunt ut.
                                         </p>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="img-fluid img-thumbnail">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
+                                            class="img-fluid img-thumbnail">
                                     </div>
                                 </li>
                                 <li class="clearfix">
                                     <div class="float-left">
-                                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="img-fluid rounded-circle"></a>
+                                        <a href="#"><img [src]="userProfile.profilePictureURL" alt=""
+                                                class="img-fluid rounded-circle"></a>
+                                    </div>
+                                    <div class="act-content">
+                                        <div class="font400">
+
+                                            <a href="#" class="font600">{{userProfile.name}}</a>{{catch.title}}
+                                        </div>
+                                        <p>
+                                            {{catch.description}}
+                                        </p>
+                                        <img [src]="catch.imageUrl" height="300px" width="300px" alt=""
+                                            class="img-fluid img-thumbnail">
+                                    </div>
+                                    <div class="act-content clearfix">
+                                        <div class="font400">
+
+                                            <a href="#" class="font600">Catched in {{catch.fishpond.name}}</a>
+                                        </div>
+                                        <p>
+                                            <img [src]="catch.fishpond.imageUrl" height="150px" width="150px" alt=""
+                                            class="img-fluid img-thumbnail">
+                                        </p>
+                                        
+                                    </div>
+                                </li>
+                                <!-- <li class="clearfix">
+                                    <div class="float-left">
+                                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
+                                                class="img-fluid rounded-circle"></a>
                                     </div>
                                     <div class="act-content">
                                         <div class="font400">
@@ -120,13 +121,15 @@
                                         </div>
                                         <span class="text-small">11 Min Ago, On <a href="#">Twitter</a></span>
                                         <p class="mb0">
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+                                            nibh euismod tincidunt ut.
                                         </p>
                                     </div>
                                 </li>
                                 <li class="clearfix">
                                     <div class="float-left">
-                                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="img-fluid rounded-circle"></a>
+                                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
+                                                class="img-fluid rounded-circle"></a>
                                     </div>
                                     <div class="act-content">
                                         <div class="font400">
@@ -135,118 +138,15 @@
                                         </div>
                                         <span class="text-small">11 Min Ago, On <a href="#">Facebook</a></span>
                                         <p class="mb20">
-                                            " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                                            " Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem Ipsum has been the industry's standard dummy text ever since the
+                                            1500s. Over the years, sometimes by accident, sometimes on purpose (injected
+                                            humour and the like).
                                         </p>
                                         <a href="#" class="btn btn-sm btn-secondary">Reply</a>
                                     </div>
-                                </li>
+                                </li> -->
                             </ul>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="t2">
-                            <ul class="activity-list list-unstyled">
-                                <li class="clearfix">
-                                    <div class="float-left">
-                                        <a href="#"><i class="icon-palette"></i></a>
-                                    </div>
-                                    <div class="act-content">
-                                        <div class="font400">
-
-                                            <a href="#" class="font600">Admin Dashboard</a>
-
-                                        </div>
-                                        <span class="text-small">11 Min Ago</span>
-                                        <div class="mb10">
-                                            <span class="label label-default">Bootstrap4</span>
-                                            <span class="label label-default">Angular4</span>
-                                            <span class="label label-default">HTML5/CSS3</span>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                                        </p>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="float-left">
-                                        <a href="#"><i class="icon-user"></i></a>
-                                    </div>
-                                    <div class="act-content">
-                                        <div class="font400">
-
-                                            <a href="#" class="font600">Assan Beauty Spa</a>
-
-                                        </div>
-                                        <span class="text-small">11 Min Ago</span>
-                                        <div class="mb10">
-                                            <span class="label label-default">Bootstrap4</span>
-                                            <span class="label label-default">Angular4</span>
-                                            <span class="label label-default">HTML5/CSS3</span>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                                        </p>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%"></div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="float-left">
-                                        <a href="#"><i class="icon-pencil"></i></a>
-                                    </div>
-                                    <div class="act-content">
-                                        <div class="font400">
-
-                                            <a href="#" class="font600">Admin Education Bootstraap4</a>
-
-                                        </div>
-                                        <span class="text-small">11 Min Ago</span>
-                                        <div class="mb10">
-                                            <span class="label label-default">Bootstrap4</span>
-                                            <span class="label label-default">Angular4</span>
-                                            <span class="label label-default">HTML5/CSS3</span>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                                        </p>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%"></div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="float-left">
-                                        <a href="#"><i class="icon-star"></i></a>
-                                    </div>
-                                    <div class="act-content">
-                                        <div class="font400">
-
-                                            <a href="#" class="font600">Assan Restaurant</a>
-
-                                        </div>
-                                        <span class="text-small">11 Min Ago</span>
-                                        <div class="mb10">
-                                            <span class="label label-default">Bootstrap4</span>
-                                            <span class="label label-default">Angular4</span>
-                                            <span class="label label-default">HTML5/CSS3</span>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-                                        </p>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%"></div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="t4">
                         </div>
                     </div>
 

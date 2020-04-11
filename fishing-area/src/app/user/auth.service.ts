@@ -107,6 +107,13 @@ export class AuthService {
     return this.http.get<IUser>(`${this.basicUrl}/api/users/username/` + username);
   }
 
+  getUserProfile(){
+    return this.http.get(`${this.basicUrl}/api/users/profile/` + this.userId);
+  }
+  getCatches(){
+    return this.http.get(`${this.basicUrl}/api/users/catch/` + this.userId);
+  }
+
   checkIfUserExistsByUsername(username: string) {
     return this.http.get(`${this.basicUrl}/api/users/exists/` + username);
   }

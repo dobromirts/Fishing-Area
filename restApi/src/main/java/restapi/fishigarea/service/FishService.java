@@ -10,4 +10,5 @@ public interface FishService {
     List<FishServiceModel> getAllFishes();
     List<FishServiceModel> getAllFishesByFishpond(String id);
     FishServiceModel getFishById(String id);
+
 }

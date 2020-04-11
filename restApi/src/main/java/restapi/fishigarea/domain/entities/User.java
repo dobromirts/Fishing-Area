@@ -15,6 +15,7 @@ public class User extends  BaseEntity implements UserDetails {
     private String password;
     private String email;
     private Set<Role> authorities;
+    private UserProfile userProfile;
 
 
     public User() {
@@ -68,7 +69,15 @@ public class User extends  BaseEntity implements UserDetails {
         this.authorities = authorities;
     }
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
 
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
 
     @Override
     @Transient

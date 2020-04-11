@@ -1,3 +1,6 @@
+<div class="alert alert-danger" role="alert" *ngIf="errorOccurred">
+    {{errorMessage}}
+  </div>
 <form class="text-center border border-light p-5" #registerForm="ngForm" (ngSubmit)="register()">
 
     <p class="h4 mb-4">Registration</p>

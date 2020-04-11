@@ -10,6 +10,7 @@ public class UserServiceModel {
     private String password;
     private String email;
     private Set<RoleServiceModel> authorities;
+    private ProfileServiceModel profileServiceModel;
 
     public UserServiceModel() {
     }
@@ -52,5 +53,13 @@ public class UserServiceModel {
 
     public void setAuthorities(Set<RoleServiceModel> authorities) {
         this.authorities = authorities;
+    }
+
+    public ProfileServiceModel getProfileServiceModel() {
+        return profileServiceModel;
+    }
+
+    public void setProfileServiceModel(ProfileServiceModel profileServiceModel) {
+        this.profileServiceModel = profileServiceModel;
     }
 }

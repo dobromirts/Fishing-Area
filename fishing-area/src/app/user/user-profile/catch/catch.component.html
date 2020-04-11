@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- <form #regionForm="ngForm" class="text-center border border-light p-5" (ngSubmit)="addRegion()"> -->
+        <form #catchForm="ngForm" (ngSubmit)="addCatch()" class="text-center border border-light p-5">
+  
+          <p>Add your new catch</p>
+  
+          
+          <input #inputTitle="ngModel" [(ngModel)]="catch.title" id="title" type="text" name="title"
+            placeholder="Enter title" class="form-control mb-4" required>
+          <textarea class="form-control" rows="5" #inputDescription="ngModel" id="description"
+            [(ngModel)]="catch.description" name="description" placeholder="Enter description" required>
+          </textarea>
+
+          <div class="form-group">
+          <label for="sel1">Select fishpond:</label>
+          <select class="form-control" id="sel1" #inputOption="ngModel" name="fishpond"
+            [(ngModel)]="catch.fishpondName">
+            <option *ngFor="let fishpond of fishponds">{{fishpond.name}}</option>
+          </select>
+        </div>
+          
+          <div class="form-label-group">
+            <label for="customFile" id="exercisePictureLabel">Profile picture</label>
+            <div class="custom-file" id="customFileContainer">
+              <input type="file" class="custom-file-input form-control" id="customFile" name="exercisePictureFile"
+                #inputPicture="ngModel" [(ngModel)]="file" accept="*"
+                (change)="handleFileInput($event.target.files, chooseFileLabel)">
+              <label class="custom-file-label" for="customFile" id="çhooseFileLabel" #chooseFileLabel>Choose
+                file</label>
+            </div>
+          </div>
+  
+          <button class="btn btn-info btn-block my-4" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>

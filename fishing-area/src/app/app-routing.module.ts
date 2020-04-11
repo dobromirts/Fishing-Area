@@ -7,10 +7,13 @@ import {ListComponent} from './user/list/list.component'
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MapComponent } from './map/map.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { EditComponent } from './user/user-profile/edit/edit.component';
 import { ContactsComponent } from './core/contacts/contacts.component';
 import { AdminGuard } from './user/admin.guard';
 import { LoggedGuard } from './user/logged.guard';
 import { AuthGuard } from './user/auth.guard';
+import { CatchComponent } from './user/user-profile/catch/catch.component';
+
 
 
 const routes: Routes = [
@@ -38,7 +41,20 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
+    
+  },
+  {
+    path: 'profile/edit',
+    component: EditComponent,
+    // canActivate: [AuthGuard]
+
+  },
+  {
+    path: 'profile/catch',
+    component: CatchComponent,
+    // canActivate: [AuthGuard]
+
   },
   {
     path: 'map',

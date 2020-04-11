@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/user/auth.service';
 import { SignInModel } from './signIn-binding.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ export class LoginComponent implements OnInit{
  
   signInModel: SignInModel;
   rememberMe=false;
+  errorOccurred=false;
 
   constructor(
     private router: Router,
@@ -25,7 +27,9 @@ export class LoginComponent implements OnInit{
     this.authService.signIn(this.signInModel).subscribe(data => {
       this.authService.handleAuthentication(data.headers.get('Authorization'), this.rememberMe);
       this.router.navigate(['/']);
-    },console.error);
+    },(error: HttpErrorResponse) => {
+      this.errorOccurred = true;
+  });
   }
 
 

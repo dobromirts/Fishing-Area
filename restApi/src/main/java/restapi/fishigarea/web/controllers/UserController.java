@@ -4,11 +4,16 @@ import javassist.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import restapi.fishigarea.domain.models.service.CatchServiceModel;
 import restapi.fishigarea.domain.models.service.UserServiceModel;
 import restapi.fishigarea.service.UserService;
+import restapi.fishigarea.web.models.request.profile.CatchAddModel;
+import restapi.fishigarea.web.models.request.profile.ProfileAddModel;
 import restapi.fishigarea.web.models.request.user.UserRegisterRequestModel;
+import restapi.fishigarea.web.models.response.profile.CatchResponseModel;
+import restapi.fishigarea.web.models.response.profile.ProfileResponseModel;
 import restapi.fishigarea.web.models.response.user.AllUsersResponeModel;
 import restapi.fishigarea.web.models.response.user.UserResponseModel;
 
@@ -38,7 +43,6 @@ public class UserController {
 
         if (!model.getPassword().equals(model.getConfirmPassword())) {
             return ResponseEntity.badRequest().body("Password must match!");
-//            throw new IllegalArgumentException("Passwords must match!");
         }
 
         boolean result = userService
@@ -56,6 +60,37 @@ public class UserController {
     public UserResponseModel getUserById(@PathVariable(value = "id") String id) throws NotFoundException {
         return modelMapper
                 .map(userService.getById(id), UserResponseModel.class);
+    }
+
+    @PostMapping("/profile/{id}")
+    public ResponseEntity editProfile(@PathVariable String id, @RequestPart("profile") ProfileAddModel model, @RequestPart("file") MultipartFile file){
+        ProfileAddModel profile=this.modelMapper.map(model,ProfileAddModel.class);
+        boolean result= this.userService.editProfile(id, profile, file);
+        if (result){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.unprocessableEntity().build();
+    }
+
+    @GetMapping("/profile/{id}")
+    public ProfileResponseModel viewProfile(@PathVariable String id) throws NotFoundException {
+        ProfileResponseModel profile=this.modelMapper.map(userService.getById(id).getProfileServiceModel(),ProfileResponseModel.class);
+        return profile;
+    }
+
+    @PostMapping("/catch/{id}")
+    public ResponseEntity addCatch(@PathVariable String id, @RequestPart("catchModel") CatchAddModel model, @RequestPart("file") MultipartFile file){
+        CatchAddModel catchModel=this.modelMapper.map(model,CatchAddModel.class);
+        boolean result= this.userService.addCatch(id, catchModel, file);
+        if (result){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.unprocessableEntity().build();
+    }
+
+    @GetMapping("/catch/{id}")
+    public List<CatchResponseModel> allCatches(@PathVariable String id) throws NotFoundException {
+        return this.userService.getAllCatches(id).stream().map(c->this.modelMapper.map(c,CatchResponseModel.class)).collect(Collectors.toList());
     }
 
     @GetMapping(value = "/username/{username}")

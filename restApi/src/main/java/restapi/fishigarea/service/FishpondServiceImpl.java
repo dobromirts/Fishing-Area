@@ -70,4 +70,9 @@ public class FishpondServiceImpl implements FishpondService {
         }
 
     }
+
+    @Override
+    public FishpondServiceModel getFishPondsByName(String name) {
+        return this.modelMapper.map(this.fishpondRepository.findFishpondByName(name),FishpondServiceModel.class);
+    }
 }

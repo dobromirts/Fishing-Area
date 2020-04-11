@@ -1,5 +1,9 @@
-<form #loginForm="ngForm" class="text-center border border-light p-5" (ngSubmit)="signin()">
 
+<div class="alert alert-danger" role="alert" *ngIf="errorOccurred">
+    Wrong username or password!
+  </div>
+<form #loginForm="ngForm" class="text-center border border-light p-5" (ngSubmit)="signin()">
+    
     <p class="h4 mb-4">Sign in</p>
 
 
@@ -13,7 +17,7 @@
         <p  class="error-message" *ngIf="passwordInput.invalid && passwordInput.touched">Please enter passoword!</p>
     <!-- <input  #passwordInput="ngModel" ngModel type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"> -->
 
-    <div class="d-flex justify-content-around">
+    <!-- <div class="d-flex justify-content-around">
         <div>
 
             <div class="custom-control custom-checkbox">
@@ -25,7 +29,7 @@
 
             <a routerLink="">Forgot password?</a>
         </div>
-    </div>
+    </div> -->
 
 
     <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>

@@ -7,12 +7,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import restapi.fishigarea.constants.AuthorityConstants;
+import restapi.fishigarea.domain.entities.Catch;
+import restapi.fishigarea.domain.entities.Fishpond;
 import restapi.fishigarea.domain.entities.User;
+import restapi.fishigarea.domain.entities.UserProfile;
+import restapi.fishigarea.domain.models.service.CatchServiceModel;
+import restapi.fishigarea.domain.models.service.ProfileServiceModel;
 import restapi.fishigarea.domain.models.service.RoleServiceModel;
 import restapi.fishigarea.domain.models.service.UserServiceModel;
 import restapi.fishigarea.repository.UserRepository;
+import restapi.fishigarea.web.models.request.profile.CatchAddModel;
+import restapi.fishigarea.web.models.request.profile.ProfileAddModel;
 
+import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,16 +34,19 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleService roleService;
+    private final FishpondService fishpondService;
     private final ModelMapper modelMapper;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
+    private  final CloudinaryService cloudinaryService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService, FishpondService fishpondService, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder, CloudinaryService cloudinaryService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
+        this.fishpondService = fishpondService;
         this.modelMapper = modelMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.cloudinaryService = cloudinaryService;
     }
 
     @Override
@@ -44,6 +56,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean registerUser(UserServiceModel userServiceModel) {
+        if (userWithGivenUsernameExists(userServiceModel.getUsername())){
+            throw new IllegalArgumentException("This username is taken!");
+        }
+        if (userWithGivenEmailExists(userServiceModel.getEmail())){
+            throw new IllegalArgumentException("This email is taken!");
+        }
+
         this.roleService.seedRolesInDb();
 
         if (this.userRepository.count() == 0) {
@@ -76,8 +95,10 @@ public class UserServiceImpl implements UserService {
         User user = userRepository
                 .findById(id)
                 .orElseThrow(() -> new NotFoundException("No such id"));
+        UserServiceModel model=this.modelMapper.map(user, UserServiceModel.class);
+        model.setProfileServiceModel(this.modelMapper.map(user.getUserProfile(), ProfileServiceModel.class));
 
-        return this.modelMapper.map(user, UserServiceModel.class);
+        return model;
     }
 
     @Override
@@ -99,6 +120,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean userWithGivenUsernameExists(String username) {
         return userRepository.findByUsername(username).isPresent();
+    }
+
+    @Override
+    public boolean userWithGivenEmailExists(String email) {
+        return userRepository.findByEmail(email).isPresent();
     }
 
     @Override
@@ -138,11 +164,53 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(editedUser,UserServiceModel.class);
     }
 
+    @Override
+    public boolean editProfile(String id, ProfileAddModel profileAddModel, MultipartFile file) {
+        User user=this.userRepository.findById(id).orElseThrow();
+        UserProfile profile=this.modelMapper.map(profileAddModel,UserProfile.class);
+        try {
+            profile.setProfilePictureURL(this.cloudinaryService.uploadImg(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        user.setUserProfile(profile);
 
+        try {
+            userRepository.save(user);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 
+    @Override
+    public boolean addCatch(String id, CatchAddModel catchModel, MultipartFile file) {
+        User user=this.userRepository.findById(id).orElseThrow();
+        Catch cath=this.modelMapper.map(catchModel,Catch.class);
+        try {
+            cath.setImageUrl(this.cloudinaryService.uploadImg(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Fishpond fishpond=this.modelMapper.map(this.fishpondService.getFishPondsByName(catchModel.getFishpondName()),Fishpond.class);
+        cath.setFishpond(fishpond);
+        List<Catch> catches = user.getUserProfile().getCatches();
+        catches.add(cath);
+        cath.setUserProfile(user.getUserProfile());
+        user.getUserProfile().setCatches(catches);
+        try {
+            userRepository.save(user);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 
-
-
+    @Override
+    public List<CatchServiceModel> getAllCatches(String id) {
+        User user=this.userRepository.findById(id).orElseThrow();
+        return user.getUserProfile().getCatches().stream().map(c -> this.modelMapper.map(c, CatchServiceModel.class)).collect(Collectors.toList());
+    }
 
     private String getUserAuthority(String userId) throws NotFoundException {
 

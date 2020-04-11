@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegisterModel } from './register-binding.model';
 import { AuthService } from 'src/app/user/auth.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerModel: RegisterModel;
-
+  errorOccurred=false;
+  errorMessage:string;
   constructor(
     private authService: AuthService,
     private router: Router
@@ -27,7 +29,10 @@ export class RegisterComponent implements OnInit {
       if(data){
         this.router.navigate(["/login"])
       }
-    },console.error)
+    },(error: HttpErrorResponse) => {
+      this.errorOccurred = true;
+      this.errorMessage=error.error.message;
+  });
     
   }
 

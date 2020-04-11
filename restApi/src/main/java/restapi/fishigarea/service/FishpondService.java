@@ -15,4 +15,6 @@ public interface FishpondService {
     FishpondServiceModel getFishpondById(String id);
 
     boolean delete (String id);
+
+    FishpondServiceModel getFishPondsByName(String name);
 }
