@@ -41,19 +41,19 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
     
   },
   {
     path: 'profile/edit',
     component: EditComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
 
   },
   {
     path: 'profile/catch',
     component: CatchComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
 
   },
   {

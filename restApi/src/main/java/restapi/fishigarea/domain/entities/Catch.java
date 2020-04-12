@@ -20,7 +20,7 @@ public class Catch extends BaseEntity{
     public void setTitle(String title) {
         this.title = title;
     }
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false,columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }

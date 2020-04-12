@@ -9,6 +9,8 @@ import restapi.fishigarea.service.RegionService;
 import restapi.fishigarea.web.models.request.region.RegionModel;
 
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 

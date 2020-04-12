@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { RegionsService } from '../regions.service';
 import { RegionModel } from '../region-binding.model';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-create',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class CreateComponent implements OnInit{
   regionModel: RegionModel;
+  errorOccurred=false;
+  
 
   constructor(private regionService:RegionsService,private router:Router) {}
 
@@ -20,9 +23,10 @@ export class CreateComponent implements OnInit{
   
   addRegion(){
     this.regionService.addRegion(this.regionModel).subscribe(data=>{
-      console.log(data)
       this.router.navigate(['/regions/all'])
-    },console.error);
+    },(error: HttpErrorResponse) => {
+      this.errorOccurred = true;
+  });
   }
 
   

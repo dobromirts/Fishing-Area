@@ -24,7 +24,7 @@ public class Fish extends BaseEntity{
     public void setName(String name) {
         this.name = name;
     }
-    @Column(name = "description",nullable = false)
+    @Column(name = "description",nullable = false,columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }
@@ -32,7 +32,7 @@ public class Fish extends BaseEntity{
     public void setDescription(String description) {
         this.description = description;
     }
-    @Column(name = "bate",nullable = false)
+    @Column(name = "bate",nullable = false,columnDefinition = "TEXT")
     public String getBate() {
         return bate;
     }
@@ -40,7 +40,7 @@ public class Fish extends BaseEntity{
     public void setBate(String bate) {
         this.bate = bate;
     }
-    @Column(name = "gear",nullable = false)
+    @Column(name = "gear",nullable = false,columnDefinition = "TEXT")
     public String getGear() {
         return gear;
     }
@@ -48,7 +48,7 @@ public class Fish extends BaseEntity{
     public void setGear(String gear) {
         this.gear = gear;
     }
-    @Column(name = "image_url",nullable = false)
+    @Column(name = "image_url",nullable = false,columnDefinition = "TEXT")
     public String getImageUrl() {
         return imageUrl;
     }

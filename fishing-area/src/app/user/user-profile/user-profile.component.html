@@ -64,88 +64,38 @@
                             <ul class="activity-list list-unstyled" *ngFor="let catch of catches">
                                 <li class="clearfix">
                                     <div class="float-left">
-                                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
-                                                class="img-fluid rounded-circle"></a>
-                                    </div>
-                                    <div class="act-content">
-                                        <div class="font400">
-
-                                            <a href="#" class="font600">John Doe</a> Sent you a direct Image
-                                        </div>
-                                        <span class="text-small">11 Min Ago</span>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                            nibh euismod tincidunt ut.
-                                        </p>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
-                                            class="img-fluid img-thumbnail">
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="float-left">
                                         <a href="#"><img [src]="userProfile.profilePictureURL" alt=""
                                                 class="img-fluid rounded-circle"></a>
                                     </div>
                                     <div class="act-content">
                                         <div class="font400">
-
-                                            <a href="#" class="font600">{{userProfile.name}}</a>{{catch.title}}
+                                            <p class="font600">{{userProfile.name}}</p>
+                                            <h5 class="font-weight-light">{{catch.title}}</h5>
+                                            <a [routerLink]="['/fishpond/details', catch.fishpond.id]" class="font600">Catched in {{catch.fishpond.name}}</a>
                                         </div>
+                                        <hr>
                                         <p>
                                             {{catch.description}}
                                         </p>
                                         <img [src]="catch.imageUrl" height="300px" width="300px" alt=""
                                             class="img-fluid img-thumbnail">
                                     </div>
-                                    <div class="act-content clearfix">
+                                    <hr>
+                                    <!-- <div class="act-content clearfix">
                                         <div class="font400">
 
-                                            <a href="#" class="font600">Catched in {{catch.fishpond.name}}</a>
+                                            <a [routerLink]="['/fishpond/details', catch.fishpond.id]" class="font600">Catched in {{catch.fishpond.name}}</a>
                                         </div>
+                                        <p>
+                                            {{catch.fishpond.description | slice:0:50}}...
+                                        </p>
                                         <p>
                                             <img [src]="catch.fishpond.imageUrl" height="150px" width="150px" alt=""
                                             class="img-fluid img-thumbnail">
                                         </p>
                                         
-                                    </div>
+                                    </div> -->
                                 </li>
-                                <!-- <li class="clearfix">
-                                    <div class="float-left">
-                                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
-                                                class="img-fluid rounded-circle"></a>
-                                    </div>
-                                    <div class="act-content">
-                                        <div class="font400">
-
-                                            <a href="#" class="font600">Robin jackson</a> Started Following You
-                                        </div>
-                                        <span class="text-small">11 Min Ago, On <a href="#">Twitter</a></span>
-                                        <p class="mb0">
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                            nibh euismod tincidunt ut.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="float-left">
-                                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
-                                                class="img-fluid rounded-circle"></a>
-                                    </div>
-                                    <div class="act-content">
-                                        <div class="font400">
-
-                                            <a href="#" class="font600">Pamela jackson</a> Sent you a private message
-                                        </div>
-                                        <span class="text-small">11 Min Ago, On <a href="#">Facebook</a></span>
-                                        <p class="mb20">
-                                            " Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s. Over the years, sometimes by accident, sometimes on purpose (injected
-                                            humour and the like).
-                                        </p>
-                                        <a href="#" class="btn btn-sm btn-secondary">Reply</a>
-                                    </div>
-                                </li> -->
                             </ul>
                         </div>
                     </div>

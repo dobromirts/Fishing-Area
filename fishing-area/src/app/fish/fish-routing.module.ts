@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { DetailsComponent } from './details/details.component';
+import { AdminGuard } from '../user/admin.guard';
 
 
 
@@ -15,7 +16,8 @@ const routes: Routes = [
             },
             {
                 path: 'create',
-                component: CreateComponent
+                component: CreateComponent,
+                canActivate: [AdminGuard]
             },
             {
                 path: 'details/:id',

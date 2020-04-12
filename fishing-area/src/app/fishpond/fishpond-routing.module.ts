@@ -3,6 +3,7 @@ import { CreateComponent } from './create/create.component';
 import {ListComponent} from './list/list.component'
 import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
+import { AdminGuard } from '../user/admin.guard';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
       },
       {
         path: 'create',
-        component: CreateComponent
+        component: CreateComponent,
+        canActivate: [AdminGuard]
       },
       {
         path: 'all',
@@ -28,7 +30,8 @@ const routes: Routes = [
       },
       {
         path: 'edit/:id',
-        component: EditComponent
+        component: EditComponent,
+        canActivate: [AdminGuard]
       }
     ]
   }

@@ -43,4 +43,6 @@ public class RegionServiceImpl implements RegionService{
     public List<RegionServiceModel> findAllRegions() {
         return this.regionRepository.findAll().stream().map(r->this.modelMapper.map(r,RegionServiceModel.class)).collect(Collectors.toList());
     }
+
+
 }

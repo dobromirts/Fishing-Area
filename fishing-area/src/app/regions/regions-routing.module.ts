@@ -3,6 +3,7 @@ import { CreateComponent } from './create/create.component';
 import { MapComponent } from '../map/map.component';
 import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
+import { AdminGuard } from '../user/admin.guard';
 
 const routes: Routes = [
   {
@@ -15,11 +16,13 @@ const routes: Routes = [
       },
       {
         path: 'create',
-        component: CreateComponent
+        component: CreateComponent,
+        canActivate: [AdminGuard]
       },
       {
         path: 'all',
-        component: ListComponent
+        component: ListComponent,
+        canActivate: [AdminGuard]
       },
       {
         path: 'details/:name',

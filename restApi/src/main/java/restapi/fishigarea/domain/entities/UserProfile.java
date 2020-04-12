@@ -23,7 +23,7 @@ public class UserProfile extends BaseEntity{
         this.name = name;
     }
 
-    @Column(name = "information")
+    @Column(name = "information",columnDefinition = "TEXT")
     public String getInformation() {
         return information;
     }

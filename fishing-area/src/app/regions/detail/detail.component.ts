@@ -6,6 +6,7 @@ import { FishpondService } from 'src/app/fishpond/fishpond.service';
 import { FishpondAllModel } from 'src/app/fishpond/list/fishpond-all.model';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/user/auth.service';
 
 
 @Component({
@@ -17,14 +18,17 @@ export class DetailComponent implements OnInit {
   private baseUrl="http://localhost:8080/api";
   region: RegionModel;
   fishponds: FishpondAllModel[];
-
+  userRole: string;
   // get fishponds() {
   //   return this.fishpondService.fishponds;
   // };
 
-  constructor(private regionService: RegionsService,private fishpondService:FishpondService, private router:Router,private http:HttpClient) { }
+  constructor(private regionService: RegionsService,private fishpondService:FishpondService,private authService:AuthService, private router:Router,private http:HttpClient) { }
 
   ngOnInit() {
+    this.authService.user.subscribe(user => {
+      this.userRole = user ? user.role : undefined;
+    });
     this.regionService.findRegionByName(this.router.url.split("/")[3]).subscribe((reg:RegionModel)=>{
       this.region=reg;
     });
