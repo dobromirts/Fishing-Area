@@ -1,17 +1,21 @@
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <!-- <form #regionForm="ngForm" class="text-center border border-light p-5" (ngSubmit)="addRegion()"> -->
+        <div class="alert alert-danger" role="alert" *ngIf="errorOccurred">
+          Invalid data! Please check you inputs again!
+        </div>
+        
         <form #catchForm="ngForm" (ngSubmit)="addCatch()" class="text-center border border-light p-5">
   
           <p>Add your new catch</p>
-  
-          
           <input #inputTitle="ngModel" [(ngModel)]="catch.title" id="title" type="text" name="title"
             placeholder="Enter title" class="form-control mb-4" required>
+            <p class="error-message" *ngIf="inputTitle.invalid && inputTitle.touched">Please enter title!</p>
+
           <textarea class="form-control" rows="5" #inputDescription="ngModel" id="description"
             [(ngModel)]="catch.description" name="description" placeholder="Enter description" required>
           </textarea>
+          <p class="error-message" *ngIf="inputDescription.invalid && inputDescription.touched">Please enter description!</p>
 
           <div class="form-group">
           <label for="sel1">Select fishpond:</label>
@@ -19,6 +23,9 @@
             [(ngModel)]="catch.fishpondName">
             <option *ngFor="let fishpond of fishponds">{{fishpond.name}}</option>
           </select>
+          <div *ngIf="!catch.fishpondName && inputOption.touched" class="alert alert-warning" role="alert">
+            Please choose fishponds!
+        </div>
         </div>
           
           <div class="form-label-group">
@@ -29,6 +36,7 @@
                 (change)="handleFileInput($event.target.files, chooseFileLabel)">
               <label class="custom-file-label" for="customFile" id="çhooseFileLabel" #chooseFileLabel>Choose
                 file</label>
+                <p class="error-message" *ngIf="!file && inputPicture.touched">Please add a picture!</p>
             </div>
           </div>
   

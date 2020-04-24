@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { EditProfileModel } from './edit-profile.model';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  styleUrls: ['./edit.component.scss','../../../../error-styles.scss']
 })
 export class EditComponent implements OnInit {
   editProfileModel: EditProfileModel;
   pictureFile: File;
   file: any;
   userId: string
+  errorOccurred=false;
+
   constructor(private router:Router,private http: HttpClient,private authService:AuthService) { }
 
   ngOnInit() {
@@ -31,7 +33,9 @@ export class EditComponent implements OnInit {
     this.addProfile(formData)
       .subscribe((profile: EditProfileModel) => {
         this.router.navigate(['/profile'])
-      },console.error);
+      },(error: HttpErrorResponse) => {
+        this.errorOccurred = true;
+    });
   }
 
   addProfile(formData: FormData){

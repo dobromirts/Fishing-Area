@@ -2,40 +2,44 @@
     <div class="row">
         <div class="col-md-12">
             <!-- <form #regionForm="ngForm" class="text-center border border-light p-5" (ngSubmit)="addRegion()"> -->
+            <div class="alert alert-danger" role="alert" *ngIf="errorOccurred">
+                Invalid data! Please check you inputs again!
+            </div>
             <form #fishpondForm="ngForm" (ngSubmit)="addFish()" class="text-center border border-light p-5">
 
                 <p>Add fish</p>
 
-                <!-- <input #regionInput='ngModel' id=" region" type="text" [(ngModel)]="regionModel.name" name="region"
-            placeholder="Enter region" class="form-control mb-4" required> -->
+
                 <input #inputName="ngModel" [(ngModel)]="fish.name" id="name" type="text" name="name"
                     placeholder="Enter name" class="form-control mb-4" required>
+                <p class="error-message" *ngIf="inputName.invalid && inputName.touched">Please enter name!</p>
                 <label for="description">Description</label>
                 <textarea class="form-control" rows="5" #inputDescription="ngModel" id="description"
-                    [(ngModel)]="fish.description" name="description" required>
+                    [(ngModel)]="fish.description" name="description" placeholder="Enter description" required>
                 </textarea>
-                <label for="description">Bate</label>
-                <textarea class="form-control" rows="3" #inputDescription="ngModel" id="bate" [(ngModel)]="fish.bate"
-                    name="bate"  required>
-          </textarea>
-          <label for="description">Gear</label>
-                <textarea class="form-control" rows="3" #inputDescription="ngModel" id="gear" [(ngModel)]="fish.gear"
-                    name="gear"  required>
-          </textarea>
-                <!-- <input #inputDescription="ngModel"  id="description" [(ngModel)]="fish.description" type="text"
-            name="description" placeholder="Enter description" class="form-control mb-4" required> -->
-            <label for="description">Select fishponds</label>
-                <select class="custom-select" name="selectedFishponds" [(ngModel)]="selectedFishponds" multiple>
-                    <option *ngFor="let fishpond of fishponds" (click)="clickedOption()" [ngValue]="fishpond.id">{{fishpond.name}}</option>
-                    <!-- <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                    <option value="2">Two</option> -->
-                </select>
+                <p class="error-message" *ngIf="inputDescription.invalid && inputDescription.touched">Please enter
+                    description!</p>
+                <label for="bate">Bate</label>
+                <textarea class="form-control" rows="3" #inputBate="ngModel" id="bate" [(ngModel)]="fish.bate"
+                    name="bate" placeholder="Enter bate" required>
+                </textarea>
+                <p class="error-message" *ngIf="inputBate.invalid && inputBate.touched">Please enter bate!</p>
+                <label for="description">Gear</label>
+                <textarea class="form-control" rows="3" #inputGear="ngModel" id="gear" [(ngModel)]="fish.gear"
+                    name="gear" placeholder="Enter gear" required>
+                 </textarea>
+                <p class="error-message" *ngIf="inputGear.invalid && inputGear.touched">Please enter gear!</p>
 
-                <!-- <select name="selectedCars" [(ngModel)]="selectedCars" multiple>
-                    <option *ngFor="let car of cars" (click)="clickedOption()" [ngValue]="car">{{car}}</option>
-                </select> -->
+                <label for="description">Select fishponds</label>
+                <select class="custom-select"  name="selectedFishponds" [(ngModel)]="selectedFishponds" multiple>
+                    <option *ngFor="let fishpond of fishponds" (click)="clickedOption()" [ngValue]="fishpond.id">
+                        {{fishpond.name}}</option>
+                </select>
+                <div *ngIf="!selectedFishponds" class="alert alert-warning" role="alert">
+                    Please choose fishponds!
+                </div>
+
+
 
                 <div class="form-label-group">
                     <label for="customFile" id="exercisePictureLabel">Picture</label>
@@ -45,6 +49,7 @@
                             (change)="handleFileInput($event.target.files, chooseFileLabel)">
                         <label class="custom-file-label" for="customFile" id="çhooseFileLabel" #chooseFileLabel>Choose
                             file</label>
+                        <p class="error-message" *ngIf="!file && inputPicture.touched">Please add a picture!</p>
                     </div>
                 </div>
 

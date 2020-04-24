@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <div class="alert alert-danger" role="alert" *ngIf="errorOccurred">
+        Invalid data! Please check you inputs again!
+      </div>
       <!-- <form #regionForm="ngForm" class="text-center border border-light p-5" (ngSubmit)="addRegion()"> -->
       <form #fishpondForm="ngForm" (ngSubmit)="addFishpond()" class="text-center border border-light p-5">
 
@@ -10,9 +13,11 @@
           placeholder="Enter region" class="form-control mb-4" required> -->
         <input #inputName="ngModel" [(ngModel)]="fishpondAddModel.name" id="name" type="text" name="name"
           placeholder="Enter name" class="form-control mb-4" required>
+        <p class="error-message" *ngIf="inputName.invalid && inputName.touched">Please enter name!</p>
         <textarea class="form-control" rows="5" #inputDescription="ngModel" id="description"
           [(ngModel)]="fishpondAddModel.description" name="description" placeholder="Enter description" required>
         </textarea>
+        <p class="error-message" *ngIf="inputDescription.invalid && inputDescription.touched">Please enter description!</p>
         <!-- <input #inputDescription="ngModel"  id="description" [(ngModel)]="fishpondAddModel.description" type="text"
           name="description" placeholder="Enter description" class="form-control mb-4" required> -->
 
@@ -32,6 +37,7 @@
               (change)="handleFileInput($event.target.files, chooseFileLabel)">
             <label class="custom-file-label" for="customFile" id="çhooseFileLabel" #chooseFileLabel>Choose
               file</label>
+              <p class="error-message" *ngIf="!file && inputPicture.touched">Please add a picture!</p>
           </div>
         </div>
 

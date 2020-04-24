@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CatchAddModel } from './catch-add.model';
 import { FishpondService } from 'src/app/fishpond/fishpond.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catch',
   templateUrl: './catch.component.html',
-  styleUrls: ['./catch.component.scss']
+  styleUrls: ['./catch.component.scss','../../../../error-styles.scss']
 })
 export class CatchComponent implements OnInit {
   catch: CatchAddModel;
   pictureFile: File;
   file: any;
   userId: string
+  errorOccurred=false;
   get fishponds(){
     return this.fishpondService.fishponds;
   }
@@ -36,7 +37,9 @@ export class CatchComponent implements OnInit {
     this.postData(formData)
       .subscribe((data: CatchAddModel) => {
         this.router.navigate(['/profile'])
-      },console.error);
+      },(error: HttpErrorResponse) => {
+        this.errorOccurred = true;
+    });
   }
 
   postData(formData: FormData){

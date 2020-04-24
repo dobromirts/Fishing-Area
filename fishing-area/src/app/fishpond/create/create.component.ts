@@ -4,16 +4,19 @@ import { RegionModel } from 'src/app/regions/region-binding.model';
 import { FishpondService } from '../fishpond.service';
 import { Router } from '@angular/router';
 import { FishpondAddModel } from './fishpond-add.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.scss','../../../error-styles.scss']
 })
 export class CreateComponent implements OnInit {
   fishpondAddModel: FishpondAddModel;
   pictureFile: File;
   file: any;
+  errorOccurred=false;
+  
 
   get regions() {
     return this.regionsService.regions
@@ -38,7 +41,9 @@ export class CreateComponent implements OnInit {
       .subscribe((fishpond: FishpondAddModel) => {
         // this.router.navigate(['/fishpond/details/' + fishpond.name])});
         this.router.navigate(['/'])
-      },console.error);
+      },(error: HttpErrorResponse) => {
+        this.errorOccurred = true;
+    });
   }
 
 

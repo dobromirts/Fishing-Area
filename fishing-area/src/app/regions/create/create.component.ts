@@ -7,11 +7,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.scss','../../../error-styles.scss']
 })
 export class CreateComponent implements OnInit{
   regionModel: RegionModel;
   errorOccurred=false;
+  errorMessage:string;
   
 
   constructor(private regionService:RegionsService,private router:Router) {}
@@ -26,6 +27,7 @@ export class CreateComponent implements OnInit{
       this.router.navigate(['/regions/all'])
     },(error: HttpErrorResponse) => {
       this.errorOccurred = true;
+      this.errorMessage=error.error.message;
   });
   }
 

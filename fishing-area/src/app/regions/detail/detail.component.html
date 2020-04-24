@@ -4,6 +4,9 @@
 <div class="album py-5 bg-light">
 
   <div class="container">
+    <div class="alert alert-danger" role="alert" *ngIf="errorOccurred">
+      No availabe content!
+    </div>
     <h1 class="font-weight-light text-center">Fishing Ponds</h1>
     <h3 class="font-weight-light text-center">{{region?.name}}</h3>
     <h3 *ngIf="!fishponds" class="font-weight-light text-center">No fishponds for this region</h3>
