@@ -38,8 +38,14 @@ public class RegionController {
     }
 
     @GetMapping("/{name}")
-    public RegionModel getRegionByName(@PathVariable("name") String name){
-        return this.modelMapper.map(this.regionService.getRegionByName(name),RegionModel.class);
+    public ResponseEntity getRegionByName(@PathVariable("name") String name){
+        try {
+            RegionModel map = this.modelMapper.map(this.regionService.getRegionByName(name), RegionModel.class);
+            return ResponseEntity.ok().body(map);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+//        return this.modelMapper.map(this.regionService.getRegionByName(name),RegionModel.class);
     }
 
 

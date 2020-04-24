@@ -25,11 +25,21 @@ public class RegionServiceImpl implements RegionService{
 
     @Override
     public RegionServiceModel addRegion(RegionServiceModel regionServiceModel) {
+        if (regionServiceModel.getName()==null){
+            throw new IllegalArgumentException("Name should not be empty!");
+        }
+        Region regionByName = this.regionRepository.findRegionByName(regionServiceModel.getName());
+        if (regionByName!=null){
+            throw new IllegalArgumentException("Region with this name already exists!");
+        }
         return this.modelMapper.map(this.regionRepository.save(this.modelMapper.map(regionServiceModel, Region.class)),RegionServiceModel.class);
     }
 
     @Override
     public RegionServiceModel getRegionByName(String name) {
+        if(this.regionRepository.findRegionByName(name)==null){
+            throw new IllegalArgumentException("No such region");
+        }
         return this.modelMapper.map(this.regionRepository.findRegionByName(name),RegionServiceModel.class);
     }
 
